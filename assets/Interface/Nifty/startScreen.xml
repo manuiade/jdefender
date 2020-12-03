@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<nifty>
+    <registerSound id="btnHoverSound" filename="Interface/sounds/click.wav" />
+    <registerSound id="btnClickSound" filename="Interface/sounds/click.wav" />
+    
+    <!-- load styles -->
+    <useStyles filename="nifty-default-styles.xml" />
+    <useControls filename="nifty-default-controls.xml" />
+    
+    <screen id="start" controller="mygame.AppStates.StartScreenAppState">
+        <layer childLayout="horizontal" id="layer1">
+            <image filename="Interface/Nifty/resources/background.png" height="100%" width="100%" />
+        </layer>
+        <layer childLayout="center" id="layer2">
+            <panel height="100%" width="100%" align="right" valign="bottom" childLayout="center">
+                <image filename="Interface/Nifty/resources/jet.png" align="right" valign="bottom" height="50%" width="60%" />
+            </panel>
+        </layer>
+        <layer childLayout="vertical" id="layer3">
+            <panel id="panel" height="20%" width="80%" align="center" valign="top" childLayout="horizontal">
+                <image filename="Interface/Nifty/resources/title.png" />
+            </panel>
+        </layer>
+    
+        <layer childLayout="horizontal" id="layer3">
+            <panel id="panel" width="80%" height="0%" align="right" valign="top" childLayout="horizontal">
+            </panel>
+            <panel id="panel" width="20%" height="20px" align="right" valign="top" padding="10px" childLayout="vertical" visibleToMouse="true">
+                <image id="soundOn" align="right" filename="Interface/Nifty/resources/soundOn.png" height="50px" width="50px" visibleToMouse="true"> 
+                    <effect>
+                        <onClick name="playSound" sound="btnClickSound"></onClick>
+                    </effect>
+                    <interact onClick="guiToggleSound()"/>
+                </image>
+
+            </panel>
+        </layer>
+
+        <layer childLayout="horizontal" id="layer3.0">
+            <panel id="panel" width="80%" height="0%" align="right" valign="top" childLayout="horizontal">
+            </panel>
+            <panel id="panel" width="20%" height="20px" align="right" valign="top" padding="10px" childLayout="vertical" visibleToMouse="true">
+                <image id="soundOff" align="right" filename="Interface/Nifty/resources/soundOff.png" height="50px" width="50px" visibleToMouse="true" visible="false"> 
+                    <effect>
+                        <onClick name="playSound" sound="btnClickSound" ></onClick>
+                    </effect>
+                    <interact onClick="guiToggleSound()"/>
+                </image>
+            </panel>
+        </layer>
+
+        <layer id="layer" backgroundColor="#0000" childLayout="center">
+            <panel id="panel" align="left" valign="bottom"  childLayout="vertical" visibleToMouse="true">
+
+                <image id="start" filename="Interface/Nifty/resources/start_game.png" align="left" childLayout="overlay">
+                    <effect>
+                        <onStartScreen name="hide" targetElement="startHover"></onStartScreen>
+                        <onStartHover name="show" targetElement="startHover" onStartEffect="methodToBeCalledWhenEffectStarted()"></onStartHover>
+                        <onStartHover name="playSound" sound="btnHoverSound"></onStartHover>
+                        <onEndHover name="hide" targetElement="startHover" onStartEffect="methodToBeCalledWhenEffectStarted()"></onEndHover>
+                        <onClick name="playSound" sound="btnClickSound"></onClick>
+                    </effect>
+                    <interact onClick="setLoadingScreen()"/>
+                    <interact onClick="menuStartGame()"/>
+                    <image id="startHover" name="hide" filename="Interface/Nifty/resources/start_game_hover.png" align="left" >
+                    </image>
+                </image>
+
+                
+                <image id="instructions" filename="Interface/Nifty/resources/instructions.png" align="left" childLayout="overlay">
+                    <effect>
+                        <onStartScreen name="hide" targetElement="instructionsHover"></onStartScreen>
+                        <onStartHover name="show" targetElement="instructionsHover" onStartEffect="methodToBeCalledWhenEffectStarted()"></onStartHover>
+                        <onStartHover name="playSound" sound="btnHoverSound"></onStartHover>
+                        <onEndHover name="hide" targetElement="instructionsHover" onStartEffect="methodToBeCalledWhenEffectStarted()"></onEndHover>
+                        <onClick name="playSound" sound="btnClickSound"></onClick>
+                    </effect>
+                    <interact onClick="menuInstructionsGame()"/>
+                    <image id="instructionsHover" name="hide" filename="Interface/Nifty/resources/instructions_hover.png" align="left" >
+                    </image>
+                </image>
+
+                <image id="quit" filename="Interface/Nifty/resources/quit_game.png" align="left" childLayout="overlay">
+                    <effect>
+                        <onStartScreen name="hide" targetElement="quitHover"></onStartScreen>
+                        <onStartHover name="show" targetElement="quitHover" onStartEffect="methodToBeCalledWhenEffectStarted()"></onStartHover>
+                        <onStartHover name="playSound" sound="btnHoverSound"></onStartHover>
+                        <onEndHover name="hide" targetElement="quitHover" onStartEffect="methodToBeCalledWhenEffectStarted()"></onEndHover>
+                        <onClick name="playSound" sound="btnClickSound"></onClick>
+                    </effect>
+                    <interact onClick="menuQuitGame()"/>
+                    <image id="quitHover" name="hide" filename="Interface/Nifty/resources/quit_game_hover.png" align="left" >
+                    </image>
+                </image>
+            </panel>
+        </layer>
+        
+    </screen>
+  
+  
+   <screen id="instructions" controller="mygame.AppStates.StartScreenAppState">
+       <layer childLayout="horizontal" id="layer1">
+            <image filename="Interface/Nifty/resources/background.png" height="100%" width="100%" />
+        </layer>
+        <layer childLayout="center" id="layer2">
+            <panel id="panel" align="center" valign="top"  childLayout="vertical" visibleToMouse="true">
+                <image filename="Interface/Nifty/resources/rule1.png" align="center" height="90" width="80%" />
+                <image filename="Interface/Nifty/resources/rule2.png" align="center" height="90" width="80%" vspace="2" />
+                <image filename="Interface/Nifty/resources/rule3.png" align="center" height="90" width="80%" />
+                <image filename="Interface/Nifty/resources/rule4.png" align="center" height="90" width="80%" />
+                <image filename="Interface/Nifty/resources/rule5.png" align="center" height="90" width="80%" />
+                <image filename="Interface/Nifty/resources/rule6.png" align="center" height="90" width="80%" />
+                
+            </panel>
+        </layer>
+        
+        <layer id="layer" backgroundColor="#0000" childLayout="center">
+            <panel id="panel" align="center" valign="bottom"  childLayout="vertical" visibleToMouse="true">           
+                <image id="back" filename="Interface/Nifty/resources/menu.png" align="left" childLayout="overlay">
+                    <effect>
+                        <onStartScreen name="hide" targetElement="backHover"></onStartScreen>
+                        <onStartHover name="show" targetElement="backHover" onStartEffect="methodToBeCalledWhenEffectStarted()"></onStartHover>
+                        <onStartHover name="playSound" sound="btnHoverSound"></onStartHover>
+                        <onEndHover name="hide" targetElement="backHover" onStartEffect="methodToBeCalledWhenEffectStarted()"></onEndHover>
+                        <onClick name="playSound" sound="btnClickSound"></onClick>
+                    </effect>
+                    <interact onClick="setStartScreen()"/>
+                    <image id="backHover" name="hide" filename="Interface/Nifty/resources/menuHover.png" align="left" >
+                    </image>
+                </image>
+            </panel>
+        </layer>
+      
+    </screen>
+    
+    <screen id="loading">
+      <layer childLayout="center" id="layer1" backgroundColor="#FFFFFF">
+          <image filename="Interface/Nifty/resources/blank.png" height="20%" id="backgroundSky" width="20%">
+          </image>
+          <panel id="panel" align="center" padding="20px" width='30%' height='30%' valign="center" childLayout="center" visibleToMouse="true">
+                <text id="level" font="Interface/Fonts/Tahoma.fnt" color="#000000" text="Level " align="center" size='200px' valign="center" />
+          </panel>
+		  <panel id="panel" align="center" padding="20px" width='30%' height='30%' valign="top" childLayout="center" visibleToMouse="true">
+                <text id="record" font="Interface/Fonts/Tahoma.fnt" color="#000000" text="Record " align="center" size='200px' valign="center" />
+          </panel>
+      </layer>
+    </screen>
+    
+    <screen id="youwin">
+      <layer childLayout="center" id="layer2" backgroundColor="#373a9d">
+          <image filename="Interface/Nifty/resources/wintxt.png" height="20%" id="backgroundSky" width="20%">
+          </image>
+      </layer>
+    </screen>
+    
+    <screen id="youdied">
+      <layer childLayout="center" id="layer3" backgroundColor="#505050">
+          <image filename="Interface/Nifty/resources/losetxt.png" height="20%" id="backgroundSky" width="20%">
+          </image>
+      </layer>
+    </screen>
+    
+    <screen id="timeisup">
+      <layer childLayout="center" id="layer4" backgroundColor="#505050">
+          <image filename="Interface/Nifty/resources/timesup.png" height="20%" id="backgroundSky" width="20%">
+          </image>
+      </layer>
+    </screen>
+  
+    <screen id="loaded"></screen>
+
+    <screen id="ingameGUI" controller="mygame.AppStates.StartScreenAppState">
+        <layer childLayout="horizontal" id="layer0" backgroundColor="#000000">
+            <effect>
+                <onStartScreen name="fade" start="#f" end="#0" neverStopRendering="true"></onStartScreen>
+            </effect>
+        </layer>
+        <layer childLayout="horizontal" id="layer1">
+            <panel id="panel" align="left" padding="20px" valign="bottom" childLayout="center" visibleToMouse="true">
+                <text id="tower" font="Interface/Fonts/ShowcardGothic.fnt" color="#2b2828" text="0/0" align="left" textSize="20" valign="center" />
+            </panel>
+        </layer>
+        <layer childLayout="horizontal" id="layer2">
+            <panel id="panel" align="left" padding="19px" valign="bottom" childLayout="center" visibleToMouse="true">
+                <text id="towerS" font="Interface/Fonts/ShowcardGothic.fnt" color="#a60505" text="0/0" align="left" textSize="20" valign="center" />
+            </panel>
+        </layer>
+        
+        <layer childLayout="horizontal" id="layer3">
+            <panel id="panel" width="80%" height="0%" align="right" valign="top" childLayout="horizontal">
+            </panel>
+            <panel id="panel" width="20%" height="20px" align="right" valign="top" padding="10px" childLayout="vertical" visibleToMouse="true">
+                <image id="soundOn" align="right" filename="Interface/Nifty/resources/soundOn.png" height="50px" width="50px" visibleToMouse="true"> 
+                    <effect>
+                        <onClick name="playSound" sound="btnClickSound"></onClick>
+                    </effect>
+                    <interact onClick="guiToggleSound()"/>
+                </image>
+
+            </panel>
+        </layer>
+
+        <layer childLayout="horizontal" id="layer3.0">
+            <panel id="panel" width="80%" height="0%" align="right" valign="top" childLayout="horizontal">
+            </panel>
+            <panel id="panel" width="20%" height="20px" align="right" valign="top" padding="10px" childLayout="vertical" visibleToMouse="true">
+                <image id="soundOff" align="right" filename="Interface/Nifty/resources/soundOff.png" height="50px" width="50px" visibleToMouse="true" visible="false"> 
+                    <effect>
+                        <onClick name="playSound" sound="btnClickSound" ></onClick>
+                    </effect>
+                    <interact onClick="guiToggleSound()"/>
+                </image>
+            </panel>
+        </layer>
+
+       
+        <layer childLayout="horizontal" id="layer6">
+            <panel id="panel" align="left" padding="20px" valign="top" width="30%" heigth="100%" childLayout="horizontal" visibleToMouse="true">
+                <text id="timer" font="Interface/Fonts/Tahoma.fnt" color="#ff0000" text="Time: 0.00" align="left"  valign="center" />
+            </panel>
+        </layer>
+    </screen>
+</nifty>
